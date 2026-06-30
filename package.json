@@ -1,0 +1,22 @@
+{
+  "name": "oracle-sql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db:up": "scripts/with-env.sh docker compose up -d",
+    "db:down": "scripts/with-env.sh docker compose down",
+    "db:destroy": "scripts/with-env.sh docker compose down -v",
+    "db:logs": "scripts/with-env.sh docker compose logs -f oracle",
+    "db:status": "scripts/with-env.sh docker compose ps oracle",
+    "db:wait": "scripts/with-env.sh docker compose exec oracle healthcheck.sh",
+    "db:connect": "scripts/with-env.sh docker compose exec oracle bash -c 'sqlplus $APP_USER/$APP_USER_PASSWORD@localhost/${ORACLE_DATABASE:-XEPDB1}'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "dotenv-cli": "^11.0.0"
+  }
+}

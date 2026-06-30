@@ -19,5 +19,23 @@ services:
       retries: 20
       start_period: 180s
 
+  flyway:
+    image: flyway/flyway:10-alpine
+    command: migrate
+    depends_on:
+      oracle:
+        condition: service_healthy
+    environment:
+      FLYWAY_URL: jdbc:oracle:thin:@oracle:1521/${ORACLE_DATABASE:-XEPDB1}
+      FLYWAY_USER: SYSTEM
+      FLYWAY_PASSWORD: ${ORACLE_PASSWORD}
+      FLYWAY_SCHEMAS: ${APP_USER:-app_user}
+      FLYWAY_CONNECT_RETRIES: 10
+      FLYWAY_LOCATIONS: filesystem:/flyway/db/migration
+    volumes:
+      - ./infra/migrations:/flyway/db/migration
+    profiles:
+      - migrate
+
 volumes:
   oracle-data:

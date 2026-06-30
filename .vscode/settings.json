@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["dotenv", "healthcheck", "PDBADMIN", "sysdba", "XEPDB"]
+  "cSpell.words": [
+    "dotenv",
+    "healthcheck",
+    "jdbc",
+    "PDBADMIN",
+    "sysdba",
+    "XEPDB"
+  ]
 }

@@ -1,6 +1,6 @@
 # Oracle SQL – Oracle 21c XE (Docker)
 
-Local Oracle Database 21c XE environment via Docker.
+Local Oracle Database 21c XE environment via Docker used on course [Oracle SQL Especialista: do Básico ao Avançado](https://www.udemy.com/course/oracle-sql-especialista-do-basico-ao-avancado-completo/).
 
 ## Prerequisites
 
@@ -97,14 +97,14 @@ Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
 
 ## NPM scripts reference
 
-| Script                   | Description                              |
-| ------------------------ | ---------------------------------------- |
-| `npm run db:up`          | Start Oracle container in the background |
-| `npm run db:down`        | Stop container (data volume preserved)   |
-| `npm run db:destroy`     | Stop container **and delete all data**   |
-| `npm run db:logs`        | Stream container logs                    |
-| `npm run db:status`      | Show container health and status         |
-| `npm run db:connect`     | Connect as app user via sqlplus          |
+| Script               | Description                              |
+| -------------------- | ---------------------------------------- |
+| `npm run db:up`      | Start Oracle container in the background |
+| `npm run db:down`    | Stop container (data volume preserved)   |
+| `npm run db:destroy` | Stop container **and delete all data**   |
+| `npm run db:logs`    | Stream container logs                    |
+| `npm run db:status`  | Show container health and status         |
+| `npm run db:connect` | Connect as app user via sqlplus          |
 
 ---
 
@@ -131,7 +131,7 @@ Data is stored in the `oracle-data` Docker named volume. It survives `db:down` a
 
 - Check password values; they are case-sensitive.
 - Re-create the container after changing passwords: `npm run db:destroy && npm run db:up`.
-- **Do not set `ORACLE_DATABASE` to `XEPDB1`** in your env files. The `gvenzl/oracle-xe` image treats `ORACLE_DATABASE` as the name of a *new* PDB to create — if you set it to `XEPDB1` (which already exists as the default), that step is silently skipped and `APP_USER` is never created. Leave `ORACLE_DATABASE` unset to use `XEPDB1` (the connect script falls back to it automatically), or set it to a custom name like `DEVDB` to create a dedicated PDB.
+- **Do not set `ORACLE_DATABASE` to `XEPDB1`** in your env files. The `gvenzl/oracle-xe` image treats `ORACLE_DATABASE` as the name of a _new_ PDB to create — if you set it to `XEPDB1` (which already exists as the default), that step is silently skipped and `APP_USER` is never created. Leave `ORACLE_DATABASE` unset to use `XEPDB1` (the connect script falls back to it automatically), or set it to a custom name like `DEVDB` to create a dedicated PDB.
 
 **Port 1521 already in use**
 

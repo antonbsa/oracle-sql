@@ -15,5 +15,13 @@ LAST=$(ls "$MIGRATIONS_DIR"/V*.sql 2>/dev/null | grep -oE 'V[0-9]+__' | grep -oE
 NEXT=$(printf "%03d" $((${LAST:-0} + 1)))
 
 FILENAME="$MIGRATIONS_DIR/V${NEXT}__${DESCRIPTION}.sql"
-touch "$FILENAME"
+
+cat > "$FILENAME" <<'EOF'
+-- [setup] switch schema context to HR so all objects are created under the correct owner
+ALTER SESSION SET CURRENT_SCHEMA = HR;
+
+-- [migration] add your SQL below this line
+
+EOF
+
 echo "Created: $FILENAME"

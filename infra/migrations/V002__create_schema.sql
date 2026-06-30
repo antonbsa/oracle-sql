@@ -1,5 +1,7 @@
-ALTER SESSION SET NLS_LANGUAGE=American;
-ALTER SESSION SET NLS_TERRITORY=America;
+-- [setup] switch schema context to HR so all objects are created under the correct owner
+ALTER SESSION SET CURRENT_SCHEMA = HR;
+
+-- [migration] add your SQL below this line
 
 /*
   Criação das Tabelas
